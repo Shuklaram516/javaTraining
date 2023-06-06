@@ -11,6 +11,7 @@ public class Rental {
 
     public Rental(Vehicle rentedVehicle, Customer customer, LocalDateTime startTime, LocalDateTime endTime) {
         this.id = UUID.randomUUID().toString();
+        System.out.println("Rental Id : " + id);
         this.rentedVehicle = rentedVehicle;
         this.customer = customer;
         this.startTime = startTime;
