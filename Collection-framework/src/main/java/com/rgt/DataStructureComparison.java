@@ -1,11 +1,11 @@
 package com.rgt;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.HashSet;
-import java.util.TreeSet;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class DataStructureComparison {
 	public static void main(String[] args) {
@@ -25,14 +25,6 @@ public class DataStructureComparison {
 		performInsertOperation(hashMap, 100_000);
 		performInsertOperation(treeMap, 100_000);
 
-		// Measure time and memory usage for each data structure
-		measureTimeAndMemory(arrayList, "ArrayList");
-		measureTimeAndMemory(linkedList, "LinkedList");
-		measureTimeAndMemory(hashSet, "HashSet");
-		measureTimeAndMemory(treeSet, "TreeSet");
-		measureTimeAndMemory(hashMap, "HashMap");
-		measureTimeAndMemory(treeMap, "TreeMap");
-
 		// Perform delete operation for each data structure
 		performDeleteOperation(arrayList, 10_000);
 		performDeleteOperation(linkedList, 10_000);
@@ -40,131 +32,115 @@ public class DataStructureComparison {
 		performDeleteOperation(hashSet, 10_000);
 		performDeleteOperation(hashMap, 10_000);
 		performDeleteOperation(treeMap, 10_000);
-
-		// Measure time and memory usage after delete operation
-		measureTimeAndMemory(arrayList, "ArrayList");
-		measureTimeAndMemory(linkedList, "LinkedList");
-		measureTimeAndMemory(hashSet, "HashSet");
-		measureTimeAndMemory(treeSet, "TreeSet");
-		measureTimeAndMemory(hashMap, "HashMap");
-		measureTimeAndMemory(treeMap, "TreeMap");
-
-		// Display the results
-		displayResults();
 	}
 
 	// Helper method to perform insert operation for ArrayList and LinkedList
 	private static void performInsertOperation(java.util.List<Integer> list, int numElements) {
 		long startTime = System.nanoTime();
-
+		long startMemory = getUsedMemory(); // Get initial memory usage
 		for (int i = 0; i < numElements; i++) {
 			list.add(i);
 		}
-
+		long endMemory = getUsedMemory();
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
+		long spaceComplexity = endMemory - startMemory;
 
 		System.out.println("Insert operation completed for " + list.getClass().getSimpleName() + ".");
 		System.out.println("Time taken: " + elapsedTime + " nanoseconds.");
+		System.out.println("Space taken: " + spaceComplexity + " bytes.\n");
 	}
 
 	// Helper method to perform insert operation for HashSet and TreeSet
 	private static void performInsertOperation(java.util.Set<Integer> set, int numElements) {
 		long startTime = System.nanoTime();
-
+		long startMemory = getUsedMemory(); // Get initial memory usage
 		for (int i = 0; i < numElements; i++) {
 			set.add(i);
 		}
-
+		long endMemory = getUsedMemory();
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
+		long spaceComplexity = endMemory - startMemory;
 
 		System.out.println("Insert operation completed for " + set.getClass().getSimpleName() + ".");
 		System.out.println("Time taken: " + elapsedTime + " nanoseconds.");
+		System.out.println("Space taken: " + spaceComplexity + " bytes.\n");
 	}
 
 	// Helper method to perform insert operation for HashMap and TreeMap
 	private static void performInsertOperation(java.util.Map<Integer, String> map, int numElements) {
 		long startTime = System.nanoTime();
-
+		long startMemory = getUsedMemory(); // Get initial memory usage
 		for (int i = 0; i < numElements; i++) {
 			map.put(i, "Value" + i);
 		}
-
+		long endMemory = getUsedMemory();
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
+		long spaceComplexity = endMemory - startMemory;
 
 		System.out.println("Insert operation completed for " + map.getClass().getSimpleName() + ".");
 		System.out.println("Time taken: " + elapsedTime + " nanoseconds.");
+		System.out.println("Space taken: " + spaceComplexity + " bytes.\n");
 	}
 
 	// Helper method to perform delete operation for ArrayList and LinkedList
 	private static void performDeleteOperation(java.util.List<Integer> list, int numElements) {
 		long startTime = System.nanoTime();
-
+		long startMemory = getUsedMemory(); // Get initial memory usage
 		for (int i = 0; i < numElements; i++) {
 			list.remove(0);
 		}
-
+		long endMemory = getUsedMemory();
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
+		long spaceComplexity = startMemory - endMemory;
 
 		System.out.println("Delete operation completed for " + list.getClass().getSimpleName() + ".");
 		System.out.println("Time taken: " + elapsedTime + " nanoseconds.");
+		System.out.println("Space taken: " + spaceComplexity + " bytes.\n");
 	}
 
 	// Helper method to perform delete operation for HashSet and TreeSet
 	private static void performDeleteOperation(java.util.Set<Integer> set, int numElements) {
 		long startTime = System.nanoTime();
-
+		long startMemory = getUsedMemory(); // Get initial memory usage
 		for (int i = 0; i < numElements; i++) {
 			set.remove(i);
 		}
-
+		long endMemory = getUsedMemory();
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
+		long spaceComplexity = startMemory - endMemory;
 
 		System.out.println("Delete operation completed for " + set.getClass().getSimpleName() + ".");
 		System.out.println("Time taken: " + elapsedTime + " nanoseconds.");
+		System.out.println("Space taken: " + spaceComplexity + " bytes.\n");
 	}
 
 	// Helper method to perform delete operation for HashMap and TreeMap
 	private static void performDeleteOperation(java.util.Map<Integer, String> map, int numElements) {
 		long startTime = System.nanoTime();
-
+		Runtime runtime = Runtime.getRuntime();
+		long startMemory = runtime.totalMemory(); // Get initial memory usage
 		for (int i = 0; i < numElements; i++) {
 			map.remove(i);
 		}
-
+		long endMemory = getUsedMemory();
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
+		long spaceComplexity = startMemory - endMemory;
 
 		System.out.println("Delete operation completed for " + map.getClass().getSimpleName() + ".");
 		System.out.println("Time taken: " + elapsedTime + " nanoseconds.");
+		System.out.println("Space taken: " + spaceComplexity + " bytes.\n");
 	}
 
-	// Helper method to measure time and memory usage for data structures
-	private static void measureTimeAndMemory(Object dataStructure, String name) {
-		long startTime = System.nanoTime();
-
-		// Perform any operation to measure memory usage (e.g., iterate over elements)
-
-		long endTime = System.nanoTime();
-		long elapsedTime = endTime - startTime; 
-
+	private static long getUsedMemory() {
 		Runtime runtime = Runtime.getRuntime();
-		long memoryUsed = runtime.totalMemory() - runtime.freeMemory();
-
-		System.out.println("Time and memory usage measured for " + name + ".");
-		System.out.println("Time taken: " + elapsedTime + " nanoseconds.");
-		System.out.println("Memory used: " + memoryUsed + " bytes.");
+		runtime.gc(); // Run garbage collection to minimize memory usage
+		return runtime.totalMemory() - runtime.freeMemory();
 	}
 
-	// Method to display the results
-	private static void displayResults() {
-		System.out.println("Data structure comparison results:");
-		// Display the results in a readable format
-		// Include the time and space complexities for each operation and data structure
-		// Compare the results with the expected time and space complexities
-	}
 }
