@@ -1,4 +1,4 @@
-package org.example;
+package org.rgt;
 
 public class Product {
 	private String name;

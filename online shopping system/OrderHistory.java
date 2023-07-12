@@ -1,4 +1,4 @@
-package org.example;
+package org.rgt;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

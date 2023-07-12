@@ -1,4 +1,4 @@
-package org.example;
+package org.rgt;
 
 import java.io.Serializable;
 import java.util.HashMap;
